@@ -46,40 +46,41 @@ export default function App() {
   const [loadAd, setLoadAd] = useState(false);
 
   useEffect(() => {
-    console.log(life)
+    console.log(life);
     fetchAdmob();
     return function cleanup() {
       AdMobRewarded.removeAllListeners();
     };
-  },[life]);
+  }, [life]);
 
   const fetchAdmob = async () => {
     AdMobRewarded.addEventListener("rewardedVideoDidRewardUser", () => {
-      console.log("Rewarded",life);
-      let lv =  Number(life)+1;
+      console.log("Rewarded", life);
+      let lv = Number(life) + 1;
       saveLife(lv);
       setLife(lv);
-      console.log(life)
+      setNotrew(false);
+      console.log(life);
     });
     AdMobRewarded.addEventListener("rewardedVideoDidLoad", () => {
-      console.log("VideoLoaded",life);
+      console.log("VideoLoaded", life);
       setLoadAd(true);
     });
     AdMobRewarded.addEventListener("rewardedVideoDidFailToLoad", () =>
-      console.log("FailedToLoad",life)
+      console.log("FailedToLoad", life)
     );
     AdMobRewarded.addEventListener("rewardedVideoDidOpen", () =>
-      console.log("Opened",life)
+      console.log("Opened", life)
     );
     AdMobRewarded.addEventListener("rewardedVideoDidClose", () => {
-      console.log("Closed",life);
+      console.log("Closed", life);
       setLoadAd(false);
     });
     AdMobRewarded.addEventListener("rewardedVideoWillLeaveApplication", () =>
-      console.log("LeaveApp",life)
+      console.log("LeaveApp", life)
     );
     AdMobRewarded.addEventListener("rewardedVideoDidStart", () =>
-      console.log("Started",life)
+      console.log("Started", life)
     );
     await AdMobRewarded.requestAdAsync();
   };
@@ -163,7 +164,6 @@ export default function App() {
       await AdMobRewarded.requestAdAsync();
     }
     await AdMobRewarded.showAdAsync();
-
   };
 
   const answerAdd = (i) => {
@@ -197,8 +197,7 @@ export default function App() {
         let lo = Number(life) - 1;
         setLife(lo);
         saveLife(lo);
-        console.log(life,lo )
-        
+        console.log(life, lo);
       }
     } else {
       setNotLife(true);
@@ -292,6 +291,9 @@ export default function App() {
       )}
       {status === "test" && (
         <>
+        <View style={{ flex: 1, width: "100%", alignItems: 'center', justifyContent: "center" }}>
+            <Text style={{ fontSize: 20, fontFamily: "Lemon", alignContent: "center" }}>{test.id}/{DATA.length}</Text>
+          </View>
           <View style={{ flex: 4, width: "100%" }}>
             <Image
               style={{ width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 3) / 4 }}
@@ -330,7 +332,7 @@ export default function App() {
           </View>
           <View
             style={{
-              flex: 2,
+              flex: 1,
               width: "100%",
               paddingLeft: 20,
               paddingRight: 20,
@@ -368,7 +370,7 @@ export default function App() {
                 backgroundColor: THEME.main,
                 borderRadius: 5,
               }}
-              textStyle={{fontSize: 14}}
+              textStyle={{ fontSize: 14 }}
               icon={true}
             />
             <CButton
