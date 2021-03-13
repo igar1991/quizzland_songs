@@ -13,7 +13,7 @@ import {
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { Header } from "./components/Header";
-import { DATA } from "./DATA";
+import { DATARU, DATAEN } from "./DATA";
 import { CButton } from "./components/CButton";
 import { THEME } from "./components/THEME";
 import { Test } from "./components/Test";
@@ -21,10 +21,22 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-community/async-storage";
 import { AdMobRewarded } from "expo-ads-admob";
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
 
 AdMobRewarded.setAdUnitID("ca-app-pub-3940256099942544/5224354917");
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
+
+i18n.translations = {
+  en: { data: DATAEN},
+  ru: { data: DATARU},
+};
+
+i18n.locale = Localization.locale
+i18n.fallbacks = true;
+
+const DATA=i18n.t('data')
 
 const appUrl =
   "https://play.google.com/store/apps/details?id=com.igorcompany.Quote_Insta";
@@ -46,7 +58,8 @@ export default function App() {
   const [loadAd, setLoadAd] = useState(false);
 
   useEffect(() => {
-    console.log(life);
+    console.log(DATA);
+
     fetchAdmob();
     return function cleanup() {
       AdMobRewarded.removeAllListeners();
