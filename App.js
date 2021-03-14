@@ -58,8 +58,6 @@ export default function App() {
   const [loadAd, setLoadAd] = useState(false);
 
   useEffect(() => {
-    console.log(DATA);
-
     fetchAdmob();
     return function cleanup() {
       AdMobRewarded.removeAllListeners();
@@ -424,7 +422,7 @@ export default function App() {
               title="Не хочу"
               onPress={() => setNotrew(!notrew)}
               style={{
-                backgroundColor: THEME.red,
+                backgroundColor: "#C9193B",
                 borderRadius: 5,
               }}
             />

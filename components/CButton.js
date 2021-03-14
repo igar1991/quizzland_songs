@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import { AntDesign } from "@expo/vector-icons";
 import {THEME} from "./THEME"
@@ -9,7 +9,7 @@ export const CButton = (props) => {
     const { title = 'Enter', style = {}, textStyle = {}, onPress, icon } = props;    
 
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+        <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={style.backgroundColor==THEME.red?true:false}>
             <Text style={[styles.text, textStyle]}>{props.title}</Text>
             {icon&&<View
           style={{

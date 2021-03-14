@@ -9,7 +9,7 @@ export const Test = (props) => {
     const { title = '', style = {}, textStyle = {}, onPress, lock } = props;
 
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+        <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={lock} >
             <Text style={[styles.text, textStyle]}>{lock?<FontAwesome name="lock" size={50} color={THEME.main} />: title}</Text>
         </TouchableOpacity>
     );
